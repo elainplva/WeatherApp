@@ -5,6 +5,8 @@ namespace WeatherApp;
 public partial class WeatherPage : ContentPage
 {
 	public List<Models.List> WeatherList;
+	public double latitude;
+	public double longitude;
 	public WeatherPage()
 	{
 		InitializeComponent();
@@ -13,7 +15,8 @@ public partial class WeatherPage : ContentPage
 	protected async override void OnAppearing()
 	{
 		base.OnAppearing();
-		var result = await ApiService.GetWeather(54.27850, 8.45972);
+		await GetLocation();
+		var result = await ApiService.GetWeather(latitude,longitude);
 		foreach (var item in result.list) 
 		{
               WeatherList.Add(item);
@@ -27,6 +30,13 @@ public partial class WeatherPage : ContentPage
 		lbWind.Text = result.list[0].wind.speed + "km/h";
 		imgWeatherIcon.Source = result.list[0].weather[0].customIcon;
     }
+
+	public async Task GetLocation()
+	{
+		var location = await Geolocation.GetLocationAsync();
+		latitude = location.Latitude;
+		longitude = location.Longitude;
+	}
 
 
 }
