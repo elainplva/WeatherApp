@@ -25,13 +25,15 @@
           Text="Its the newest weather app.It has a bunchof features that icludes most of the ones that every weather app has in"
           FontSize="Small"
           TextColor="Blue" />
-        
+
         <Button
-            Text="Get Started"
-            FontSize="Large"
-            BackgroundColor="MediumPurple"
-            WidthRequest="250"
-            Margin="0,50,0,0"
-            x:Name="BtnGetStarted"/>
+           Text="Get Started"
+           FontSize="Large"
+           BackgroundColor="MediumPurple"
+           WidthRequest="250"
+           Margin="0,50,0,0"
+           x:Name="BtnGetStarted"
+           Clicked="BtnStarted_Clicked"/>
+
     </StackLayout>
 </ContentPage>
