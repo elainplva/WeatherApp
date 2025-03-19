@@ -12,9 +12,9 @@ namespace WeatherApp.Models
     public class City
     {
         public int id { get; set; }
-        public string name { get; set; }
-        public Coord coord { get; set; }
-        public string country { get; set; }
+        public string? name { get; set; }  
+        public Coord? coord { get; set; }  
+        public string? country { get; set; }  
         public int population { get; set; }
         public int timezone { get; set; }
         public int sunrise { get; set; }
@@ -36,15 +36,14 @@ namespace WeatherApp.Models
     {
         public int dt { get; set; }
         public string dateTime => UtcTimeLibrary.UtcTimeStamp.ConvertToUtc(dt);
-        public Main main { get; set; }
-        public List<Weather> weather { get; set; }
-        public Clouds clouds { get; set; }
-        public Wind wind { get; set; }
-        public int visibility { get; set; }
-        public double pop { get; set; }
-        public Sys sys { get; set; }
-        public string dt_txt { get; set; }
-        public Snow snow { get; set; }
+
+        public Main? main { get; set; }  
+        public List<Weather>? weather { get; set; }  
+        public Clouds? clouds { get; set; }  
+        public Wind? wind { get; set; }  
+        public Sys? sys { get; set; }  
+        public string? dt_txt { get; set; }  
+        public Snow? snow { get; set; }  
     }
 
     public class Main
@@ -63,13 +62,12 @@ namespace WeatherApp.Models
 
     public class Root
     {
-        public string cod { get; set; }
+        public string? cod { get; set; }  
         public int message { get; set; }
         public int cnt { get; set; }
-        public List<List> list { get; set; }
-        public City city { get; set; }
+        public List<List>? list { get; set; }  
+        public City? city { get; set; }  
     }
-
     public class Snow
     {
         [JsonProperty("3h")]
@@ -78,15 +76,15 @@ namespace WeatherApp.Models
 
     public class Sys
     {
-        public string pod { get; set; }
+        public string? pod { get; set; }
     }
 
     public class Weather
     {
         public int id { get; set; }
-        public string main { get; set; }
-        public string description { get; set; }
-        public string icon { get; set; }
+        public string? main { get; set; }  
+        public string? description { get; set; }  
+        public string? icon { get; set; }
         //public string fullIconUrl => string.Format("https://openweathermap.org/img/wn/{0}@2x.png", icon);
         public string customIcon => string.Format("icon_{0}.png", icon);
     }
