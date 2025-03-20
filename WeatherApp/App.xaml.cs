@@ -2,22 +2,31 @@
 {
     public partial class App : Application
     {
+
         public App()
         {
             InitializeComponent();
             VersionTracking.Track();
-            if(VersionTracking.IsFirstLaunchEver == true)
+        }
+
+        protected override Window CreateWindow(IActivationState? activationState) // Fix: Make activationState nullable
+        {
+            return new Window(DetermineStartupPage());
+        }
+
+        private Page DetermineStartupPage()
+        {
+            if (VersionTracking.IsFirstLaunchEver)
             {
-                MainPage = new WelcomePage();
+                return new WelcomePage();
             }
             else
             {
-                MainPage = new WeatherPage();
-
+                return new WeatherPage();
             }
 
         }
 
-       
     }
-}
+
+}   
