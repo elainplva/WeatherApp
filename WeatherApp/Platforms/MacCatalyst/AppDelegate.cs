@@ -1,6 +1,6 @@
 ﻿using Foundation;
 
-namespace WeatherApp
+namespace WeatherApp.Platforms.MacCatalyst
 {
     [Register("AppDelegate")]
     public class AppDelegate : MauiUIApplicationDelegate
