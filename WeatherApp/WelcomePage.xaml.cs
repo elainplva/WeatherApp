@@ -11,9 +11,14 @@ public partial class WelcomePage : ContentPage
     {
 
     }
-    private void BtnStarted_Clicked(object sender, EventArgs e)
+    private async void BtnStarted_Clicked(object sender, EventArgs e)
     {
-        Navigation.PushModalAsync(new WeatherPage());
+#if IOS || MACCATALYST || WINDOWS
+      await Navigation.PushModalAsync(new WeatherPage());
+#else
+        Console.WriteLine("Navigation not supported on this platform.");
+#endif
     }
+
 
 }

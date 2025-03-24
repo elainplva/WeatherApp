@@ -30,20 +30,20 @@ public partial class WeatherPage : ContentPage
         longitude = location.Longitude;
     }
 
-    private async Task TapLocation_Tapped(object sender, EventArgs e)
+    private async void TapLocation_Tapped(object sender, EventArgs e)
     {
         await GetLocation();
         await GetWeatherDataByLocation(latitude, longitude);
 
     }
 
-    public async Task GetWeatherDataByLocation(double latiude, double longitude)
+    public async Task GetWeatherDataByLocation(double latitude, double longitude)
     {
         var result = await ApiService.GetWeather(latitude, longitude);
         UpdateUI(result);
     }
 
-    private async void ImgButton_Clicked(object sender, EventArgs e)
+    private async void ImageButton_Clicked(object sender, EventArgs e)
     {
         var response = await DisplayPromptAsync(title: "", message: "", placeholder: "Search weather by city", accept: "Search", cancel: "Cancel");
         if (response != null)
