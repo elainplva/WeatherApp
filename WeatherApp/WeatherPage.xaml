@@ -3,10 +3,118 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WeatherApp.WeatherPage"
              Title="WeatherPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+      RowSpacing="20">
+
+        <!-- FIXED: Removed 'Orientation' from Grid -->
+        <Grid Grid.Row="0"
+          Margin="20,20,20,0"
+          ColumnDefinitions="*,Auto">
+
+            <Border Grid.Column="0"
+                Stroke="LightBlue"
+                StrokeThickness="2"
+                Background="White"
+                Padding="10">
+                <Label Text="Your Location"
+                   FontSize="Default"/>
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer x:Name="TapLocation" Tapped="TapLocation_Tapped"/>
+                </Border.GestureRecognizers>
+            </Border>
+
+            <ImageButton Grid.Column="1"
+                     Source="search.png"
+                     HeightRequest="30"
+                     WidthRequest="30"
+                     HorizontalOptions="End"
+                     Clicked="ImageButton_Clicked"/>
+        </Grid>
+        <!-- FIXED: Changed <Grid/> to </Grid> -->
+
+        <StackLayout Grid.Row="1"
+                 Orientation="Vertical">
+            <Label x:Name="lbCity"
+               FontSize="40"
+               HorizontalOptions="Center"
+               TextColor="CadetBlue"/>
+            <Label x:Name="lbWeatherDesc"
+               FontSize="Medium"
+               HorizontalOptions="Center"
+               TextColor="CadetBlue"/>
+        </StackLayout>
+
+        <Image Grid.Row="2"
+           x:Name="imgWeatherIcon"
+           VerticalOptions="Start"
+           HeightRequest="300"
+           WidthRequest="300"/>
+
+        <Grid Grid.Row="3" 
+          RowDefinitions="Auto,Auto" 
+          ColumnDefinitions="0.33*,0.33*,0.33*" 
+          Margin="20">
+
+            <Image Grid.Row="0"
+               Grid.Column="0"
+               HorizontalOptions="Center"
+               HeightRequest="25"
+               Source="humidity.png"/>
+
+            <Label x:Name="lbHumidity"
+               Grid.Row="1"
+               Grid.Column="0"
+               HorizontalOptions="Center"/>
+
+            <Label x:Name="lbTemperature"
+               Grid.Row="0"
+               Grid.Column="1"
+               Grid.RowSpan="2"
+               HorizontalOptions="Center"
+               FontSize="40"
+               FontAttributes="Bold"/>
+
+            <Image Grid.Row="0"
+               Grid.Column="2"
+               HorizontalOptions="Center"
+               HeightRequest="25"
+               Source="wind.png"/>
+
+            <Label x:Name="lbWind"
+               Grid.Row="1"
+               Grid.Column="2"
+               HorizontalOptions="Center"/>
+        </Grid>
+
+        <CollectionView Grid.Row="4" x:Name="cvWeather" HeightRequest="100">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Horizontal"
+                               ItemSpacing="20" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Grid.Row="4" RowDefinitions="Auto, Auto, Auto">
+                        <Image Grid.Row="0"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Start"
+                           HeightRequest="50"
+                           WidthRequest="50" 
+                           Source="{Binding weather[0].customIcon}"/>
+
+                        <Label Grid.Row="1"
+                           FontSize="Large"
+                           HorizontalOptions="Center" 
+                           Text="{Binding main.temperature}"/>
+
+                        <Label Grid.Row="2"
+                           FontSize="Small"
+                           HorizontalOptions="Center" 
+                           Text="{Binding dateTime}"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </Grid>
 </ContentPage>
