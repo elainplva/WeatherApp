@@ -5,8 +5,28 @@
         public App()
         {
             InitializeComponent();
+            VersionTracking.Track();
 
-            MainPage = new AppShell();
         }
+
+        protected override Window CreateWindow(IActivationState? activationState) // Fix: Make activationState nullable
+        {
+            return new Window(DetermineStartupPage());
+        }
+
+        private Page DetermineStartupPage()
+        {
+            if (VersionTracking.IsFirstLaunchEver)
+            {
+                return new WelcomePage();
+            }
+            else
+            {
+                return new WeatherPage();
+            }
+
+        }
+
+
     }
 }
