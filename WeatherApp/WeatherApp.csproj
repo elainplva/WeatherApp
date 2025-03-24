@@ -64,4 +64,13 @@
 		<PackageReference Include="UtcTimeLibrary" Version="1.0.0" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <MauiXaml Update="WeatherPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="WelcomePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
 </Project>
