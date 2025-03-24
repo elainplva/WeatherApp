@@ -1,7 +1,7 @@
 ﻿using ObjCRuntime;
 using UIKit;
 
-namespace WeatherApp;
+namespace WeatherApp.Platforms.iOS;
 
 public class Program
 {

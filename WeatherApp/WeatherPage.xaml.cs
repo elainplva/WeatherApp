@@ -11,7 +11,7 @@ public partial class WeatherPage : ContentPage
     public WeatherPage()
 	{
 		InitializeComponent();
-        WeatherList = new List<Models.List>();
+        WeatherList = new ();
 
     }
 
@@ -26,9 +26,17 @@ public partial class WeatherPage : ContentPage
     public async Task GetLocation()
     {
         var location = await Geolocation.GetLocationAsync();
-        latitude = location.Latitude;
-        longitude = location.Longitude;
+        if (location != null)
+        {
+            latitude = location.Latitude;
+            longitude = location.Longitude;
+        }
+        else
+        {
+            Console.WriteLine("Location not available.");
+        }
     }
+
 
     private async void TapLocation_Tapped(object sender, EventArgs e)
     {
