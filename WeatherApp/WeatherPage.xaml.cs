@@ -18,7 +18,7 @@ public partial class WeatherPage : ContentPage
     protected async override void OnAppearing()
     {
         base.OnAppearing();
-        await Task.Run(async () =>
+        await MainThread.InvokeOnMainThreadAsync(async () =>
         {
             await GetLocation();
             await GetWeatherDataByLocation(latitude, longitude);
