@@ -18,9 +18,11 @@ public partial class WeatherPage : ContentPage
     protected async override void OnAppearing()
     {
         base.OnAppearing();
-        await GetLocation();
-        await GetWeatherDataByLocation(latitude, longitude);
-
+        await Task.Run(async () =>
+        {
+            await GetLocation();
+            await GetWeatherDataByLocation(latitude, longitude);
+        });
     }
 
     public async Task GetLocation()
@@ -51,7 +53,7 @@ public partial class WeatherPage : ContentPage
         UpdateUI(result);
     }
 
-    private async void ImageButton_Clicked(object sender, EventArgs e)
+    private async void ImageButton_Clicked(object sender, EventArgs e)    
     {
         var response = await DisplayPromptAsync(title: "", message: "", placeholder: "Search weather by city", accept: "Search", cancel: "Cancel");
         if (response != null)

@@ -19,7 +19,7 @@
                 <Label Text="Your Location"
                    FontSize="Default"/>
                 <Border.GestureRecognizers>
-                    <TapGestureRecognizer x:Name="TapLocation" Tapped="TapLocation_Tapped"/>
+                    <TapGestureRecognizer Tapped="TapLocation_Tapped"/>
                 </Border.GestureRecognizers>
             </Border>
 
