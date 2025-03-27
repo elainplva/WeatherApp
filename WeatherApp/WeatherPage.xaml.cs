@@ -50,7 +50,14 @@ public partial class WeatherPage : ContentPage
     public async Task GetWeatherDataByLocation(double latitude, double longitude)
     {
         var result = await ApiService.GetWeather(latitude, longitude);
-        UpdateUI(result);
+        if (result != null)
+        {
+            UpdateUI(result);
+        }
+        else
+        {
+            Console.WriteLine("Weather data not available.");
+        }
     }
 
     private async void ImageButton_Clicked(object sender, EventArgs e)    
@@ -65,25 +72,42 @@ public partial class WeatherPage : ContentPage
     public async Task GetWeatherDataByCity(string city)
     {
         var result = await ApiService.GetWeatherByCity(city);
-        UpdateUI(result);
+        if (result != null)
+        {
+            UpdateUI(result);
+        }
+        else
+        {
+            Console.WriteLine("Weather data not available.");
+        }
     }
 
-    public void UpdateUI(dynamic result)
+    public void UpdateUI(Root result)
     {
-        foreach (var item in result.list)
+        WeatherList.Clear();
+        if (result.List != null)
         {
-            WeatherList.Add(item);
+            foreach (var item in result.List)
+            {
+                WeatherList.Add(item);
+            }
         }
         cvWeather.ItemsSource = WeatherList;
 
-        lbCity.Text = result.city.name;
-        lbWeatherDesc.Text = result.list[0].weather[0].description;
-        lbTemperature.Text = result.list[0].main.temperature + "°C";
-        lbHumidity.Text = result.list[0].main.humidity + "%";
-        lbWind.Text = result.list[0].wind.speed + "km/h";
-        imgWeatherIcon.Source = result.list[0].weather[0].customIcon;
-
+        if (result.City != null)
+        {
+            lbCity.Text = result.City.Name;
+        }
+        if (result.List != null && result.List.Count > 0)
+        {
+            lbWeatherDesc.Text = result.List[0].Weather?[0].Description;
+            lbTemperature.Text = result.List[0].Main?.Temperature + "°C";
+            lbHumidity.Text = result.List[0].Main?.Humidity + "%";
+            lbWind.Text = result.List[0].Wind?.Speed + "km/h";
+            imgWeatherIcon.Source = result.List[0].Weather?[0].CustomIcon;
+        }
     }
+
 
 
 }
