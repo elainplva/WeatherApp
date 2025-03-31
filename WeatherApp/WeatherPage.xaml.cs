@@ -82,31 +82,32 @@ public partial class WeatherPage : ContentPage
         }
     }
 
+
     public void UpdateUI(Root result)
     {
         WeatherList.Clear();
         if (result.List != null)
         {
-            foreach (var item in result.List)
-            {
-                WeatherList.Add(item);
-            }
+            WeatherList.AddRange(result.List);
         }
         cvWeather.ItemsSource = WeatherList;
 
-        if (result.City != null)
+        var city = result.City?.Name;
+        var firstItem = result.List?.FirstOrDefault();
+
+        if (city != null || firstItem != null)
         {
-            lbCity.Text = result.City.Name;
-        }
-        if (result.List != null && result.List.Count > 0)
-        {
-            lbWeatherDesc.Text = result.List[0].Weather?[0].Description;
-            lbTemperature.Text = result.List[0].Main?.Temperature + "°C";
-            lbHumidity.Text = result.List[0].Main?.Humidity + "%";
-            lbWind.Text = result.List[0].Wind?.Speed + "km/h";
-            imgWeatherIcon.Source = result.List[0].Weather?[0].CustomIcon;
+            lbCity.Text = city ?? string.Empty;
+            lbWeatherDesc.Text = firstItem?.Weather?[0].Description ?? string.Empty;
+            lbTemperature.Text = firstItem?.Main?.Temperature + "°C" ?? string.Empty;
+            lbHumidity.Text = firstItem?.Main?.Humidity + "%" ?? string.Empty;
+            lbWind.Text = firstItem?.Wind?.Speed + "km/h" ?? string.Empty;
+            imgWeatherIcon.Source = firstItem?.Weather?[0].CustomIcon ?? string.Empty;
         }
     }
+
+
+
 
 
 

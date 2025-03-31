@@ -57,7 +57,7 @@
                    Grid.Column="0"
                    HorizontalOptions="Center"
                    HeightRequest="25"
-                   Source="humidity.png"/>
+                   Source="Resources/Images/humidity.png"/>
 
             <Label x:Name="lbHumidity"
                    Grid.Row="1"
@@ -76,7 +76,7 @@
                    Grid.Column="2"
                    HorizontalOptions="Center"
                    HeightRequest="25"
-                   Source="wind.png"/>
+                   Source="Resources/Images/wind.png"/>
 
             <Label x:Name="lbWind"
                    Grid.Row="1"
