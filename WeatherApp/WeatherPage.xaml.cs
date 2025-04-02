@@ -108,7 +108,4 @@ public partial class WeatherPage : ContentPage
 
 
 
-
-
-
 }
