@@ -13,7 +13,7 @@ namespace WeatherApp.Services
         public static async Task<Root?> GetWeather(double latitude, double longitude)
         {
             var client = new HttpClient();
-            var url = $"https://api.openweathermap.org/data/2.5/forecast?lat={latitude}&lon={longitude}&appid=faeb14dd3f0d880980cf2137b29720e6";
+            var url = $"https://api.openweathermap.org/data/2.5/forecast?lat={latitude}&lon={longitude}&units=metric&appid=faeb14dd3f0d880980cf2137b29720e6";
             Console.WriteLine($"Request URL: {url}"); // Log the URL
             try
             {
@@ -44,6 +44,7 @@ namespace WeatherApp.Services
                 return null;
             }
         }
+
 
     }
 }
