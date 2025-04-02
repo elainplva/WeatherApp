@@ -45,11 +45,10 @@ namespace WeatherApp.Models
         public Snow? Snow { get; set; }
     }
 
-   
     public class Main
     {
         public double Temp { get; set; }
-        public double Temperature => Math.Round((Temp - 32) * 5.0 / 9.0);
+        public double Temperature => Math.Round(Temp);
         public double Feels_like { get; set; }
         public double Temp_min { get; set; }
         public double Temp_max { get; set; }
